@@ -1,5 +1,19 @@
 {
     "cSpell.words": [
         "yalm"
+    ],
+    "sqltools.connections": [
+        {
+            "pgOptions": {
+                "ssl": {
+                    "rejectUnauthorized": true
+                }
+            },
+            "previewLimit": 50,
+            "server": "localhost",
+            "driver": "PostgreSQL",
+            "name": "render.com",
+            "connectString": "postgresql://adonaivillalobos:Fkxs2CrRUGTbTyjODTIdTw6vRtdLwYIA@dpg-cv2u9lrqf0us738226m0-a.frankfurt-postgres.render.com/cse340_ibri"
+        }
     ]
 }
