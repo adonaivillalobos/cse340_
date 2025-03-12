@@ -16,11 +16,12 @@ body {
 
 header {
     background-color: white;
-    color: white;
+    color: #333; /* Changed from white to a darker color for readability */
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 1rem;
+    margin-bottom: 1rem; /* Add space below the header */
 }
 
 header h1 {
@@ -57,6 +58,10 @@ header .account {
 
 #top-header #tools a:hover {
   color: #e6b800;
+}
+
+nav {
+    margin-top: 1rem; /* Add space above the navigation */
 }
 
 nav ul {
@@ -102,19 +107,19 @@ nav a {
 
 .details {
     display: flex;
-    flex-direction: row; /* Align children horizontally */
-    justify-content: space-between; /* Add space between upgrades and reviews */
-    align-items: flex-start; /* Align items at the top */
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
     width: 100%;
-    max-width: 1200px; /* Adjust based on your design */
+    max-width: 1200px; 
     padding: 2rem;
-    margin: 0 auto; /* Center the container */
+    margin: 0 auto;
 }
 
 .upgrades, .reviews {
-    width: 48%; /* Set equal width for both sections */
-    text-align: left; /* Align text to the left */
-    margin-bottom: 0; /* Remove bottom margin */
+    width: 48%;
+    text-align: left; 
+    margin-bottom: 0;
 }
 
 .upgrade-items {
@@ -124,39 +129,39 @@ nav a {
 }
 
 .upgrade {
-    text-align: center; /* Center-align the content */
+    text-align: center;
     display: flex;
-    flex-direction: column; /* Stack image and link vertically */
-    align-items: center; /* Center-align items horizontally */
+    flex-direction: column; 
+    align-items: center; 
 }
 
 .upgrade img {
-    width: 100px; /* Keep the image size as defined */
-    height: auto; /* Maintain aspect ratio */
-    margin-bottom: 10px; /* Space between image and text */
+    width: 100px;
+    height: auto;
+    margin-bottom: 10px;
 }
 
 .upgrade a {
-    color: #333; /* Text color */
-    text-decoration: none; /* Remove underline */
-    font-weight: bold; /* Make text bold */
-    font-size: 1rem; /* Adjust font size */
+    color: #333; 
+    text-decoration: none;
+    font-weight: bold; 
+    font-size: 1rem;
 }
 
 .upgrade a:hover {
-    color: #ffcc00; /* Hover effect */
+    color: #ffcc00;
 }
 
 .reviews ul {
-    list-style: none; /* Remove default list bullets */
-    padding: 0; /* Remove default padding */
-    margin: 0; /* Remove default margin */
+    list-style: none;
+    padding: 0;
+    margin: 0;
 }
 
 .reviews li {
-    margin-bottom: 15px; /* Add space between each review */
-    padding-left: 20px; /* Move text a little more to the left */
-    text-align: left; /* Ensure text is aligned to the left */
+    margin-bottom: 15px;
+    padding-left: 20px;
+    text-align: left;
 }
 
 /* Media query for larger screens */
@@ -179,5 +184,42 @@ nav a {
     }
     .upgrades, .reviews {
         max-width: 400px;
+    }
+}
+
+/* Media query for mobile screens */
+@media screen and (max-width: 767px) {
+    body {
+        padding: 0 10px;
+    }
+
+    .hero {
+        padding: 1rem;
+    }
+
+    .hero-text {
+        top: 40%;
+        left: 0;
+        transform: translateY(-50%);
+        max-width: none;
+    }
+
+    .details {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 1rem;
+    }
+
+    .upgrades, .reviews {
+        width: 100%;
+        margin-bottom: 1rem;
+    }
+
+    .upgrade-items {
+        grid-template-columns: 1fr;
+    }
+
+    nav {
+        margin-top: 1.5rem;
     }
 }
