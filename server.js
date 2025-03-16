@@ -12,7 +12,8 @@ const path = require("path");
 const app = express();
 const static = require("./routes/static");
 const expressLayouts = require("express-ejs-layouts");
-const baseController = require("./controllers/baseController")
+const baseController = require("./controllers/baseController");
+const inventoryRoute = require("./routes/inventoryRoute"); // ✅ Import inventoryRoute
 
 /* ***********************
  * View Engine and Templates
@@ -32,7 +33,7 @@ app.use(static);
 app.get("/", baseController.buildHome);
 
 // Inventory routes
-app.use("/inv", inventoryRoute);
+app.use("/inv", inventoryRoute); // ✅ Now this will work
 
 /* ***********************
  * Local Server Information
