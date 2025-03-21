@@ -14,6 +14,7 @@ const static = require("./routes/static");
 const expressLayouts = require("express-ejs-layouts");
 const baseController = require("./controllers/baseController");
 const inventoryRoute = require("./routes/inventoryRoute"); // ✅ Import inventoryRoute
+const utilities = require("./utilities"); // ✅ Ensure utilities is in scope
 
 /* ***********************
  * View Engine and Templates
@@ -34,6 +35,25 @@ app.get("/", baseController.buildHome);
 
 // Inventory routes
 app.use("/inv", inventoryRoute); // ✅ Now this will work
+
+// File Not Found Route - must be last route in list
+app.use(async (req, res, next) => {
+  next({status: 404, message: 'Sorry, we appear to have lost that page.'})
+})
+
+/* ***********************
+ * Express Error Handler
+ * Place after all other middleware
+ *************************/
+app.use(async (err, req, res, next) => {
+  let nav = await utilities.getNav()
+  console.error(`Error at: "${req.originalUrl}": ${err.message}`)
+  res.render("errors/error", {
+    title: err.status || 'Server Error',
+    message: err.message,
+    nav
+  })
+})
 
 /* ***********************
  * Local Server Information
