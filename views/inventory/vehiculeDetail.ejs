@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= title %></title> <!-- Title is dynamically set in the controller -->
+  <link rel="stylesheet" href="/css/styles.css"> <!-- Link to your CSS -->
+</head>
+<body>
+  <header>
+    <nav>
+      <%= nav %> <!-- The navigation will be dynamically generated -->
+    </nav>
+  </header>
+
+  <main>
+    <!-- Vehicle Detail Section -->
+    <div class="vehicle-detail-container">
+      <div class="vehicle-image">
+        <img src="<%= vehicleData.inv_image %>" alt="<%= vehicleData.inv_make %> <%= vehicleData.inv_model %>">
+      </div>
+      <div class="vehicle-info">
+        <h1><%= vehicleData.inv_make %> <%= vehicleData.inv_model %></h1>
+
+        <!-- Vehicle Make, Model, Year and Price -->
+        <div class="vehicle-overview">
+          <p><strong>Make:</strong> <%= vehicleData.inv_make %></p>
+          <p><strong>Model:</strong> <%= vehicleData.inv_model %></p>
+          <p><strong>Year:</strong> <%= vehicleData.inv_year %></p>
+          <p><strong>Price:</strong> $<%= new Intl.NumberFormat('en-US').format(vehicleData.inv_price) %></p>
+        </div>
+
+        <!-- Vehicle Mileage -->
+        <div class="vehicle-mileage">
+          <p><strong>Mileage:</strong> <%= new Intl.NumberFormat('en-US').format(vehicleData.inv_mileage) %> miles</p>
+        </div>
+
+        <!-- Vehicle Description -->
+        <div class="vehicle-description">
+          <p><strong>Description:</strong></p>
+          <p><%= vehicleData.inv_description %></p>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 CSE Motors. All rights reserved.</p>
+  </footer>
+</body>
+</html>
