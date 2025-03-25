@@ -2,22 +2,37 @@ const pool = require("../database/")
 
 const Util = {}
 
-/* ***************************
- *  Build Navigation Bar
- * ************************** */
-Util.getNav = async function () {
-  try {
-    const data = await pool.query("SELECT * FROM public.classification")
-    let nav = "<ul>"
-    data.rows.forEach((row) => {
-      nav += `<li><a href="/inv/type/${row.classification_id}">${row.classification_name}</a></li>`
+/* **************************************
+* Build the classification view HTML
+* ************************************ */
+Util.buildClassificationGrid = async function(data){
+  let grid
+  if(data.length > 0){
+    grid = '<ul id="inv-display">'
+    data.forEach(vehicle => { 
+      grid += '<li>'
+      grid +=  '<a href="../../inv/detail/'+ vehicle.inv_id 
+      + '" title="View ' + vehicle.inv_make + ' '+ vehicle.inv_model 
+      + 'details"><img src="' + vehicle.inv_thumbnail 
+      +'" alt="Image of '+ vehicle.inv_make + ' ' + vehicle.inv_model 
+      +' on CSE Motors" /></a>'
+      grid += '<div class="namePrice">'
+      grid += '<hr />'
+      grid += '<h2>'
+      grid += '<a href="../../inv/detail/' + vehicle.inv_id +'" title="View ' 
+      + vehicle.inv_make + ' ' + vehicle.inv_model + ' details">' 
+      + vehicle.inv_make + ' ' + vehicle.inv_model + '</a>'
+      grid += '</h2>'
+      grid += '<span>$' 
+      + new Intl.NumberFormat('en-US').format(vehicle.inv_price) + '</span>'
+      grid += '</div>'
+      grid += '</li>'
     })
-    nav += "</ul>"
-    return nav
-  } catch (error) {
-    console.error("Error building navigation:", error)
-    return "<ul><li>Error loading navigation</li></ul>"
+    grid += '</ul>'
+  } else { 
+    grid += '<p class="notice">Sorry, no matching vehicles could be found.</p>'
   }
+  return grid
 }
 
 module.exports = Util // Make sure `getNav` is exported properly!
