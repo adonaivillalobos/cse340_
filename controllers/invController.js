@@ -19,12 +19,7 @@ invCont.buildByClassificationId = async function (req, res, next) {
   })
 }
 
-invCont.buildVehicleDetailView = async function (req, res, next) {
-  res.render("./inventory/detail", {
-  title: "Vehicle Details",
-  vehicleHtml: null,
-  });
-  }
+
 
   
 
