@@ -92,7 +92,7 @@ nav a {
 .hero-text {
     margin-bottom: 1rem;
     position: absolute;
-    top: 30%;
+    top: 40%; /* Adjusted to lower the hero text */
     left: 10%;
     transform: translateY(-50%);
     background: rgba(255, 255, 255, 0.7);
