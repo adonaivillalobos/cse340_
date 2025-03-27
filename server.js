@@ -15,6 +15,7 @@ const expressLayouts = require("express-ejs-layouts");
 const baseController = require("./controllers/baseController");
 const inventoryRoute = require("./routes/inventoryRoute"); // ✅ Import inventoryRoute
 const utilities = require("./utilities"); // ✅ Ensure utilities is in scope
+const errorMiddleware = require("./middleware/errorMiddleware"); // ✅ Add this line
 
 /* ***********************
  * View Engine and Templates
@@ -42,18 +43,9 @@ app.use(async (req, res, next) => {
 })
 
 /* ***********************
- * Express Error Handler
- * Place after all other middleware
+ * Use Error Middleware (Centralized)
  *************************/
-app.use(async (err, req, res, next) => {
-  let nav = await utilities.getNav()
-  console.error(`Error at: "${req.originalUrl}": ${err.message}`)
-  res.render("errors/error", {
-    title: err.status || 'Server Error',
-    message: err.message,
-    nav
-  })
-})
+app.use(errorMiddleware); // ✅ Use centralized error middleware
 
 /* ***********************
  * Local Server Information

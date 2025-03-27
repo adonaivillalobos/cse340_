@@ -38,4 +38,13 @@ invCont.buildVehicleDetailView = async function (req, res, next) {
   })
 }
 
+/* ***************************
+ *  Intentional 500 Error Handler
+ * ************************** */
+invCont.triggerError = (req, res, next) => {
+  const error = new Error("Intentional server error triggered!");
+  error.status = 500;
+  next(error); // Pass error to middleware
+}
+
 module.exports = invCont
