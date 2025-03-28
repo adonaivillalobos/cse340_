@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= title %></title> <!-- Use the title passed from the controller -->
+  <link rel="stylesheet" href="/css/styles.css"> <!-- Link to CSS file for the login form -->
+</head>
+<body>
+  <header>
+    <h1><%= title %></h1> <!-- Display the title here -->
+  </header>
+
+  <!-- Flash message display if exists -->
+  <% if (messages && messages.length > 0) { %>
+    <div class="flash-messages">
+      <% messages.forEach(message => { %>
+        <p><%= message %></p> <!-- Display each flash message -->
+      <% }) %>
+    </div>
+  <% } %>
+
+  <section class="login-section">
+    <h2>Login</h2>
+    <form action="/account/login" method="POST"> <!-- The form will submit to a POST route for login -->
+      <label for="email">Email Address (Username):</label>
+      <input type="email" id="email" name="email" required placeholder="Enter your email">
+      <br><br>
+      <label for="password">Password:</label>
+      <input type="password" id="password" name="password" required placeholder="Enter your password">
+      <br><br>
+      <button type="submit">Login</button> <!-- Button to submit the login credentials -->
+    </form>
+
+    <!-- Link to the registration view if user doesn't have an account -->
+    <p>Don't have an account? <a href="/account/register">Sign up here</a></p>
+  </section>
+</body>
+</html>

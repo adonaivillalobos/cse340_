@@ -1,6 +1,8 @@
 const invModel = require("../models/inventory-model");
 const Util = {};
 
+// Existing utility functions for building nav, classification grid, and vehicle detail view
+
 /* ************************
  * Constructs the nav HTML unordered list
  ************************** */
@@ -96,6 +98,31 @@ Util.buildVehicleDetailView = async function (vehicle) {
   detailView += "</div>";
 
   return detailView;
+};
+
+// New utilities
+
+/* **************************************
+ * Authentication Middleware (verifyAuth)
+ * ************************************ */
+Util.verifyAuth = function (req, res, next) {
+  if (!req.user) {  // Assuming req.user contains the user info if logged in
+    return res.redirect('/login');  // Redirect to login if not authenticated
+  }
+  next();  // Proceed to the next middleware or route handler
+};
+
+/* **************************************
+ * Get Account Details (example)
+ * ************************************ */
+Util.getAccountDetails = async function (userId) {
+  // Replace this with actual logic to fetch account details from the database
+  return {
+    id: userId,
+    name: "John Doe",
+    email: "johndoe@example.com",
+    // Add other account details as necessary
+  };
 };
 
 module.exports = Util;

@@ -14,11 +14,11 @@ const static = require("./routes/static");
 const expressLayouts = require("express-ejs-layouts");
 const baseController = require("./controllers/baseController");
 const inventoryRoute = require("./routes/inventoryRoute"); // ✅ Import inventoryRoute
+const accountRoute = require("./routes/accountRoute"); // ✅ Import accountRoute
 const utilities = require("./utilities"); // ✅ Ensure utilities is in scope
 const errorMiddleware = require("./middleware/errorMiddleware"); // ✅ Add this line
 const session = require("express-session")
 const pool = require('./database/')
-
 
 /* ***********************
  * Middleware
@@ -34,15 +34,12 @@ app.use(session({
   name: 'sessionId',
 }))
 
-
 // Express Messages Middleware
 app.use(require('connect-flash')())
 app.use(function(req, res, next){
   res.locals.messages = require('express-messages')(req, res)
   next()
 })
-
-
 
 /* ***********************
  * View Engine and Templates
@@ -63,6 +60,9 @@ app.get("/", baseController.buildHome);
 
 // Inventory routes
 app.use("/inv", inventoryRoute); // ✅ Now this will work
+
+// Account routes
+app.use("/account", accountRoute); // ✅ Add this for account routes
 
 // File Not Found Route - must be last route in list
 app.use(async (req, res, next) => {
