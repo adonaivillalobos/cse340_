@@ -125,4 +125,21 @@ Util.getAccountDetails = async function (userId) {
   };
 };
 
+
+/* **************************************
+ * Wrapper for catching async errors
+ * ************************************ */
+Util.handleErrors = function (controller, func) {
+  return async function (req, res, next) {
+    try {
+      await func(req, res, next);
+    } catch (err) {
+      console.error("Caught error in handleErrors:", err);
+      next(err);
+    }
+  };
+};
+
+
+
 module.exports = Util;

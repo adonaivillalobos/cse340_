@@ -1,19 +1,13 @@
 const express = require('express');
 const router = express.Router();
-const utilities = require('../utilities');
 const accountController = require('../controllers/accountController');
+const utilities = require('../utilities');
 
 // Route to fetch the "My Account" page
-router.get('/my-account', utilities.verifyAuth, accountController.getMyAccount);
+router.get("/login", utilities.handleErrors(accountController, accountController.buildLogin));
 
-// Example route for getting account details
-router.get('/details/:id', utilities.verifyAuth, accountController.getAccountDetails);
-
-// Example route for updating account information
-router.put('/update/:id', utilities.verifyAuth, accountController.updateAccount);
-
-// Example route for deleting an account
-router.delete('/delete/:id', utilities.verifyAuth, accountController.deleteAccount);
+// Route to fect the Registration page
+router.get("/register", utilities.handleErrors(accountController.buildRegister));
 
 // Error handler middleware
 router.use((err, req, res, next) => {

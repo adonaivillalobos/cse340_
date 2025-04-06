@@ -1,25 +1,26 @@
 // Import utilities
 const utilities = require('../utilities');
 
-// Example of getMyAccount function
-async function getMyAccount(req, res, next) {
-    try {
-        // Example logic for fetching the account data (you can adjust it according to your actual logic)
-        const account = await utilities.getAccountDetails(req.user.id); // or any logic to fetch account details
 
-        // Rendering the view for the "My Account" page
-        res.render("account/myAccount", {
-            title: "My Account",
-            account: account,
-            nav: await utilities.getNav()  // Example of passing the navigation data
-        });
-    } catch (error) {
-        next(error);  // Pass the error to the next middleware (error handler)
-    }
+// Login function
+async function buildLogin(req, res, next) {
+    let nav = await utilities.getNav();
+    res.render("account/login", {
+        title: "Login",
+        nav,
+        messages: req.flash ? req.flash("message") : [] 
+      });
 }
 
-module.exports = {
-    getMyAccount,
-    // Export other controller methods if needed
-};
+// Registration function
+async function buildRegister(req, res, next) {
+    let nav = await utilities.getNav();
+    res.render("account/register", {
+        title: "Register",
+        nav,
+        errors : null,
+      });
+}
 
+
+module.exports = { buildLogin, buildRegister };

@@ -62,7 +62,7 @@ app.get("/", baseController.buildHome);
 app.use("/inv", inventoryRoute); // ✅ Now this will work
 
 // Account routes
-app.use("/account", accountRoute); // ✅ Add this for account routes
+app.use("/account", require("./routes/accountRoute")); 
 
 // File Not Found Route - must be last route in list
 app.use(async (req, res, next) => {
